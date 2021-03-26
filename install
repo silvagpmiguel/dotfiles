@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+### VARIABLES ###
+ADD_TO_BASHRC=$(cat << EOF
+
+
+# enable dotfiles aliases and functions
+if [ -d "\$HOME/.dotfiles" ]; then
+    . "\$HOME/.dotfiles/.dotinit"
+fi
+EOF
+)
+
+ADD_TO_PROFILE=$(cat << EOF
+
+
+# set dotfiles bin PATH and include bash_functions and bash_aliases
+if [ -d "\$HOME/.dotfiles" ]; then
+    export PATH=\$PATH:\$HOME/.dotfiles/bin
+fi
+EOF
+)
+
+### INSTALLATION ###
+set -e
+echo "# Beginning dotfiles setup!"
+
+### CREATING DOTFILES ENVIRONMENT ###
+echo "## Creating dotfiles folder..."
+mkdir -p ~/.dotfiles ~/.dotfiles/bin
+echo "## Setting dotfiles folder..."
+curl -sL https://raw.githubusercontent.com/silvagpmiguel/dotfiles/main/README.md -o ~/.dotfiles/README.md
+curl -sL https://raw.githubusercontent.com/silvagpmiguel/dotfiles/main/.bash_aliases -o ~/.dotfiles/.bash_aliases
+curl -sL https://raw.githubusercontent.com/silvagpmiguel/dotfiles/main/.bash_functions -o ~/.dotfiles/.bash_functions
+curl -sL https://raw.githubusercontent.com/silvagpmiguel/dotfiles/main/.dotinit -o ~/.dotfiles/.dotinit
+curl -sL https://raw.githubusercontent.com/silvagpmiguel/dotfiles/main/uninstall -o ~/.dotfiles/uninstall
+
+### BASHRC/PROFILE CONFIGURATION ###
+echo "## Setting dotfiles aliases and functions..."
+if grep -li "dotinit" "$HOME/.bashrc" &> /dev/null; then
+    echo ".bashrc already supports dotfiles aliases and functions!"
+else
+    printf "$ADD_TO_BASHRC" >> ~/.bashrc  
+fi
+echo "Done."
+echo "## Setting dotfiles commands..."
+if grep -li "dotfiles/bin" "$HOME/.profile" &> /dev/null; then
+    echo ".profile already supports dotfiles binaries!"
+else
+    printf "$ADD_TO_PROFILE" >> ~/.profile  
+fi
+echo "Done."
+echo "# Dotfiles setup has finished!"

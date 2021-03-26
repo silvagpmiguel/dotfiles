@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+. $HOME/.dotfiles/.bash_aliases
+. $HOME/.dotfiles/.bash_functions
