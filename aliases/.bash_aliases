@@ -41,5 +41,5 @@ alias ports='netstat -tulanp' # list TCP/UDP ports
 alias route='netstat -rn' # route table
 alias myip='hostname -I' # local machine ip address
 
+alias log='less +F -r' # tail, wait for output and display in the default editor
 alias logt-='tail -F' # tail and wait for output
-alias logl='less +F' # tail, wait for output and display in the default editor
