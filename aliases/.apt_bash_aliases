@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if command -v apt &> /dev/null; then
+    alias remove='sudo apt remove' # apt remove
+    alias removey='sudo apt -y remove' # apt remove yes
+    alias purge='sudo apt remove --purge' # apt purge 
+    alias purgey='sudo apt remove --purge -y' # apt purge yes
+    alias install='sudo apt install' # apt install
+    alias instally='sudo apt -y install' # apt install yes
+    alias updatey='sudo apt -y update' # apt update yes
+    alias upgradey='sudo apt -y dist-upgrade' # apt upgrade yes
+    alias upgradable='sudo apt list --upgradable' # list apt upgradable
+    alias autoremovey='sudo apt -y autoremove' # apt autoremove
+    alias update='updatey && upgradable && upgradey && autoremovey' # full apt update cycle
+fi

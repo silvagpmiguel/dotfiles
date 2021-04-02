@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
-### Place your functions here ###
 # Extract any archive `$1`
 extract() {
  if [[ -f $1 ]]; then
-    # display usage if no parameters given
     echo "Usage: extract <FILENAME>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
   else
     case $1 in
