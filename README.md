@@ -11,6 +11,9 @@ To add a new custom aliases file, move it to the `~/.dotfiles/aliases` folder, w
 ## Add Your Custom Bash Commands
 To add a new bash command, move the command's folder/script into the `~/.dotfiles` folder, create a symbolic link of the executable and place it inside `~/.dotfiles/bin` folder.
 
+## Add Your Custom Bash Completions
+To add a new custom completions file, move it to the `~/.dotfiles/completions` folder, with a filename that must end with `_completions`. Also, you can attach any custom completion to any `_completions` file present in it. 
+
 ## Install
 
 ```bash

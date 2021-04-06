@@ -2,3 +2,4 @@
 
 for f in $HOME/.dotfiles/aliases/.*_aliases; do . $f; done
 for f in $HOME/.dotfiles/functions/.*_functions; do . $f; done
+for f in $HOME/.dotfiles/completions/.*_completions; do . $f; done

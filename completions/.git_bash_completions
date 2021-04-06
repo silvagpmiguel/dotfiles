@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+if command -v git &> /dev/null; then
+    . ~/.dotfiles/completions/.git-completion.bash
+    __git_complete ga _git_add
+    __git_complete gb _git_branch
+    __git_complete gbdel _git_branch
+    __git_complete gc _git_commit
+    __git_complete gp _git_push
+    __git_complete gpf _git_push
+    __git_complete gch _git_checkout    
+    __git_complete gchf _git_checkout    
+    __git_complete gchb _git_checkout    
+    __git_complete gcl _git_clone
+    __git_complete gd _git_diff
+    __git_complete gconf _git_config
+    __git_complete gconfg _git_config
+    __git_complete gconfgu _git_config
+    __git_complete gpull _git_pull
+    __git_complete gr _git_reset
+    __git_complete gs _git_status
+    __git_complete gstash _git_stash
+    __git_complete gstashp _git_stash
+    __git_complete gundo _git_reset
+    __git_complete gundof _git_reset
+fi
