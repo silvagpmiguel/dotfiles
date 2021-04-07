@@ -5,13 +5,12 @@ if command -v git &> /dev/null; then
     alias ga.='git add .' # git add all files in current folder
     alias gac='git add . && git commit -m' # git add all files in current folder and commit
 
-    alias gamend='git commit --amend' # git amend
-
     alias gb='git branch' # git branch (can be used to add new branch)
     alias gbdel='git branch -D' # git delete branch
 
     alias gc='git commit -m' # git add all files in current folder and commit
-
+    alias gcamend='git commit --amend' # git amend
+    alias gcamendm='git commit --amend -m' # git amend without prompt
 
     alias gch='git checkout' # git checkout
     alias gchf='git checkout -f' # git checkout force
@@ -26,6 +25,8 @@ if command -v git &> /dev/null; then
     alias gconfg='git config --global' # git config global
     alias gconfgu='git config --global --unset' # git config global unset
 
+    alias gf='git fetch' # git fetch
+
     alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit' # pretty git log
 
     alias gp='git push' # git push
@@ -33,7 +34,9 @@ if command -v git &> /dev/null; then
 
     alias gpull='git pull' # git pull
 
-    alias gr='git reset' # git reset
+    alias gr='git restore' # git restore
+
+    alias greset='git reset' # git reset
 
     alias gs='git status' # git status
 

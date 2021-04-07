@@ -1008,6 +1008,9 @@ __git_complete_remote_or_refspec ()
 {
 	local cur_="$cur" cmd="${words[1]}"
 	local i c=2 remote="" pfx="" lhs=1 no_complete_refspec=0
+	if [ ${words[0]} != 'git' ]; then
+		c=1
+	fi
 	if [ "$cmd" = "remote" ]; then
 		((c++))
 	fi
@@ -1053,7 +1056,7 @@ __git_complete_remote_or_refspec ()
 		cur_="${cur_#+}"
 		;;
 	esac
-	case "$cmd" in
+	case "$1" in
 	fetch)
 		if [ $lhs = 1 ]; then
 			__git_complete_fetch_refspecs "$remote" "$pfx" "$cur_"
@@ -1061,7 +1064,7 @@ __git_complete_remote_or_refspec ()
 			__git_complete_refs --pfx="$pfx" --cur="$cur_"
 		fi
 		;;
-	pull|remote)
+	pull)
 		if [ $lhs = 1 ]; then
 			__git_complete_refs --remote="$remote" --pfx="$pfx" --cur="$cur_"
 		else
@@ -1799,7 +1802,7 @@ _git_fetch ()
 		return
 		;;
 	esac
-	__git_complete_remote_or_refspec
+	__git_complete_remote_or_refspec "fetch"
 }
 
 __git_format_patch_extra_options="
@@ -2199,7 +2202,7 @@ _git_pull ()
 		return
 		;;
 	esac
-	__git_complete_remote_or_refspec
+	__git_complete_remote_or_refspec "pull"
 }
 
 __git_push_recurse_submodules="check on-demand only"
@@ -2250,7 +2253,7 @@ _git_push ()
 		return
 		;;
 	esac
-	__git_complete_remote_or_refspec
+	__git_complete_remote_or_refspec "push"
 }
 
 _git_range_diff ()

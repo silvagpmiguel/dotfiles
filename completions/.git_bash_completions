@@ -6,6 +6,7 @@ if command -v git &> /dev/null; then
     __git_complete gb _git_branch
     __git_complete gbdel _git_branch
     __git_complete gc _git_commit
+    __git_complete gf _git_fetch
     __git_complete gp _git_push
     __git_complete gpf _git_push
     __git_complete gch _git_checkout    
