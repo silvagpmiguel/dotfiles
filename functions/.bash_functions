@@ -26,34 +26,6 @@ extract() {
   fi
 }
 
-# git commit with description `$1` and push to branch `$2` (if exists)
-gcp() {
-  if [[ -z "$1" ]]; then
-    echo "Usage: gcp <DESCRIPTION> [BRANCH]"
-  else
-    [[ -z "$2" ]] && branch="" || branch="origin $2"
-    git commit -m "$1" && git push "$branch"
-  fi
-}
-
-# git add `$1` (if exists), commit with description `$2` and push to branch `$3` (if exists)
-gacp() {
-  case $# in
-    1)
-      git add "." && git commit -m "$1" && git push
-    ;;
-    2)
-      git add "$1" && git commit -m "$2" && git push
-    ;;
-    3)
-      git add "$1" && git commit -m "$2" && git push origin "$3"
-    ;;
-    *)
-      echo "Usage: gacp [PATH] <DESCRIPTION> [BRANCH]"
-    ;;
-  esac
-}
-
 # get process name `$1` info
 proc() {
     [[ -z "$1" ]] && echo "Usage: proc <PROCESS_NAME>" || ps aux | grep "$1"

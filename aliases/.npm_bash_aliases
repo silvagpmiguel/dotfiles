@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 if command -v npm &> /dev/null; then
+    alias na='npm audit'
+    alias naf='npm audit fix'
+    
     alias ni='npm install'
     alias nis='npm install --save'
     alias nisd='npm install --save-dev'

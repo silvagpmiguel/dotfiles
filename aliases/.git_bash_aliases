@@ -10,6 +10,7 @@ if command -v git &> /dev/null; then
 
     alias gc='git commit -m' # git add all files in current folder and commit
     alias gcamend='git commit --amend' # git amend
+    alias gcamendne='git commit --amend --no-edit' # git amend no edit
     alias gcamendm='git commit --amend -m' # git amend without prompt
 
     alias gch='git checkout' # git checkout
@@ -47,4 +48,34 @@ if command -v git &> /dev/null; then
     alias gundoh='git reset --hard' # git undo hard
     alias gundo1='git reset --soft HEAD~1' # git undo last commit
     alias gundoh1='git reset --hard HEAD~1' # git undo last commit (hard)
+
+    dalias() { alias | grep 'docker' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/" | sed "s/['|\']//g" | sort; }
+
+    # git commit with description `$1` and push to branch `$2` (if exists)
+    gcp() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: gcp <DESCRIPTION> [BRANCH]"
+    else
+        [[ -z "$2" ]] && branch="" || branch="origin $2"
+        git commit -m "$1" && git push "$branch"
+    fi
+    }
+
+    # git add `$1` (if exists), commit with description `$2` and push to branch `$3` (if exists)
+    gacp() {
+    case $# in
+        1)
+        git add "." && git commit -m "$1" && git push
+        ;;
+        2)
+        git add "$1" && git commit -m "$2" && git push
+        ;;
+        3)
+        git add "$1" && git commit -m "$2" && git push origin "$3"
+        ;;
+        *)
+        echo "Usage: gacp [PATH] <DESCRIPTION> [BRANCH]"
+        ;;
+    esac
+    }
 fi
