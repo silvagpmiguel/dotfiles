@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
-for f in $HOME/.dotfiles/aliases/.*_aliases; do . $f; done
-for f in $HOME/.dotfiles/functions/.*_functions; do . $f; done
-for f in $HOME/.dotfiles/completions/.*_completions; do . $f; done
+case $1 in
+    profile)
+        for f in $HOME/.dotfiles/env/.*_env; do . $f; done
+    ;;
+    bashrc)
+        for f in $HOME/.dotfiles/aliases/.*_aliases; do . $f; done
+        for f in $HOME/.dotfiles/functions/.*_functions; do . $f; done
+        for f in $HOME/.dotfiles/completions/.*_completions; do . $f; done
+    ;;
+esac

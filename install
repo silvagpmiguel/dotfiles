@@ -4,9 +4,9 @@
 ADD_TO_BASHRC=$(cat << EOF
 
 
-# enable dotfiles aliases and functions
-if [ -d "\$HOME/.dotfiles" ]; then
-    . "\$HOME/.dotfiles/.dotinit"
+# enable dotfiles aliases, functions & completions
+if [ -d "$HOME/.dotfiles" ]; then
+    . $HOME/.dotfiles/.dotinit bashrc
 fi
 EOF
 )
@@ -14,9 +14,9 @@ EOF
 ADD_TO_PROFILE=$(cat << EOF
 
 
-# set dotfiles bin PATH and include bash_functions and bash_aliases
-if [ -d "\$HOME/.dotfiles" ]; then
-    export PATH=\$PATH:\$HOME/.dotfiles/bin
+# set dotfiles bin PATH & env variables
+if [ -d "$HOME/.dotfiles" ]; then 
+    . $HOME/.dotfiles/.dotinit profile
 fi
 EOF
 )
@@ -28,7 +28,7 @@ echo "# Beginning dotfiles setup!"
 ### CREATING DOTFILES ENVIRONMENT ###
 echo "## Creating .dotfiles folder structure..."
 mkdir -p ~/.dotfiles
-echo "## Setting .dotfiles..."
+echo "## Cloning dotfiles environment..."
 git clone --quiet https://github.com/silvagpmiguel/dotfiles.git ~/dottemp
 rm -rf ~/dottemp/.git
 rm ~/dottemp/LICENSE ~/dottemp/install
@@ -36,16 +36,16 @@ cp -r ~/dottemp/. ~/.dotfiles
 rm -rf ~/dottemp
 
 ### BASHRC/PROFILE CONFIGURATION ###
-echo "## Setting .dotfiles aliases and functions..."
+echo "## Setting .dotfiles aliases, functions & completions..."
 if grep -li "dotinit" "$HOME/.bashrc" &> /dev/null; then
-    echo ".bashrc already supports dotfiles aliases and functions!"
+    echo ".bashrc already supports dotfiles aliases, functions & completions!"
 else
     printf "$ADD_TO_BASHRC" >> ~/.bashrc  
 fi
 echo "Done."
-echo "## Setting .dotfiles commands..."
+echo "## Setting .dotfiles commands & env variables..."
 if grep -li "dotfiles/bin" "$HOME/.profile" &> /dev/null; then
-    echo ".profile already supports dotfiles binaries!"
+    echo ".profile already supports dotfiles binaries & env variables!"
 else
     printf "$ADD_TO_PROFILE" >> ~/.profile  
 fi
