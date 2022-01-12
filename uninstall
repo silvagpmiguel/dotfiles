@@ -4,7 +4,7 @@
 echo "# Beginning dotfiles removal!"
 echo "## Removing dotfiles configuration..."
 sed -zi 's/# set dotfiles.*\n.*\n.*\n.*//g' ~/.profile 
-sed -zi 's/# enable dotfiles.*\n.*\n.*\n.*//g' ~/.bashrc
+sed -zi 's/# enable dotfiles.*\n.*\n.*\n.*\n.*//g' ~/.bashrc
 echo "Done"
 echo "## Removing dotfiles environment..."
 rm -rf ~/.dotfiles
